@@ -1,3 +1,10 @@
+## Create Front with Placeholders
+Estimated time to complete: 3 hours
+Time Started: 9:30 am
+Time Completed: 12:51pm
+Actual Time: 3hrs 20 Min
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
