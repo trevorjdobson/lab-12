@@ -1,5 +1,5 @@
 import React, { Component, Fragment }from 'react';
-
+import superagent from 'superagent';
 
 class Hiking extends Component{
     constructor(props){

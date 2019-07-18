@@ -16,7 +16,7 @@ class App extends Component{
 
   }
   toggleView = (url) => {
-    console.log('app clickity');
+    console.log('app clickity', url);
     this.setState({view: 'results',url: url})
   }
 

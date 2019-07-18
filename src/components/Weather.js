@@ -1,5 +1,7 @@
 import React, { Component, Fragment }from 'react';
 
+import superagent from 'superagent';
+
 
 class Weather extends Component{
     constructor(props){
@@ -18,7 +20,27 @@ class Weather extends Component{
       }
       
     }
-  
+  componentDidMount(){
+    console.log(this.props.locationData)
+    superagent.get(`${this.props.url}/weather`)
+    .query({data: this.props.locationData})
+    .then(results =>{
+      console.log(results.body);
+      this.setState({data: results.body})
+    })
+  }
+  componentDidUpdate(prevProps){
+    console.log(this.props.locationData)
+    console.log('weather is changing')
+    if(this.props.locationData !== prevProps.locationData){
+      superagent.get(`${this.props.url}/weather`)
+      .query({data: this.props.locationData})
+    .then(results =>{
+      console.log(results.body);
+      this.setState({data: results.body})
+    })
+    }
+  }
     
   
     render(){
