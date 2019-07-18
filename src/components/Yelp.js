@@ -5,7 +5,7 @@ class Yelp extends Component{
     constructor(props){
       super(props);
       this.state={
-        
+        data: ['default']
       }
       
     }
@@ -36,10 +36,15 @@ class Yelp extends Component{
       return (
         <Fragment>
             
-          <div>Yelp
-              <p>Place to Eat</p>
-              <p>Rating </p>
-          </div>
+            {this.state.data.map(el=>{
+             return (
+              <div key={Math.random()}>
+              <a href={el.url}>{el.name}</a>
+      <p>The average rating is {el.rating} out of 5 and the average cost is {el.price} out of 4</p>
+      <img src={el.image_url}></img>
+              </div>
+             )
+           })} 
           
         </Fragment>
       );

@@ -5,7 +5,7 @@ class Movies extends Component{
     constructor(props){
       super(props);
       this.state={
-        
+        data: ['default']
       }
       
     }
@@ -36,11 +36,15 @@ class Movies extends Component{
     render(){
       return (
         <Fragment>
-            
-          <div>Movies
-              <p>Release</p>
-              <h3>Title</h3>
-          </div>
+           {this.state.data.map(el=>{
+             return (
+              <div key={Math.random()}>
+              <p><span>{el.title}</span> was relased on {el.released_on}. Out of {el.total_votes} total votes, {el.title} has an average vote of {el.average_votes} and a popularity score of {el.popularity}.</p>
+              <img src={el.image_url}/>
+              <p>{el.overview}</p>
+              </div>
+             )
+           })} 
           
         </Fragment>
       );

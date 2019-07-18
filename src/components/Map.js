@@ -1,5 +1,5 @@
 import React, { Component, Fragment }from 'react';
-import supergent from 'superagent';
+import superagent from 'superagent';
 import SimpleMap from './GoogleMap';
 
 
