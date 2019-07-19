@@ -5,6 +5,7 @@ import Yelp from './Yelp.js';
 import Movies from './Movies.js';
 import Events from './Events.js';
 import Hiking from './Hiking.js';
+import '../App.css';
 
 class Content extends Component{
     constructor(props){
@@ -14,18 +15,27 @@ class Content extends Component{
       }
       
     }
-  
+    componentDidMount(){
+      this.setState(this.props.locationData)
+    }
+    componentDidUpdate(prevProps){
+      if(this.props.locationData !== prevProps.locationData){
+        console.log('your props are changing go get new data', this.props.locationData)
+        this.setState(this.props.locationData)
+      }
+    }
     
   
     render(){
       return (
         <Fragment>
-            
-          <Weather/>
-          <Yelp/>
-          <Events/>
-          <Movies/>
-          <Hiking/>
+          <div className="column-container">
+          <Weather  url={this.props.url} locationData={this.state}/>
+          <Yelp url={this.props.url} locationData={this.state}/>
+          <Events url={this.props.url} locationData={this.state}/>
+          <Movies url={this.props.url} locationData={this.state}/>
+          <Hiking url={this.props.url} locationData={this.state}/>
+          </div>  
         </Fragment>
       );
     }

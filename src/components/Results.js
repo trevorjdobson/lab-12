@@ -1,6 +1,6 @@
 import React, { Component, Fragment }from 'react';
-
-
+import superagent from 'superagent';
+import '../App.css';
 import Search from './Search.js'
 import Content from './Content.js';
 import Map from './Map.js'
@@ -10,19 +10,30 @@ class Results extends Component{
   constructor(props){
     super(props);
     this.state={
-      location: ''
+      id:1,
+      search_query:'',
+      formatted_query:'',
+      latitude:'',
+      longitude:'',
+      created_at:null
     }
     
   }
+  
 
   
   handleSubmit = (location) =>{
     console.log('going to get data for', location);
-    this.setState({location: location})
+    superagent.get(`${this.props.url}/location?data=${location}`)
+      .then(results =>{
+        console.log(results.body)
+        this.setState(results.body)
+
+      })
   }
 
   render(){
-    if(this.state.location === ''){
+    if(this.state.search_query === ''){
       return (
         <Fragment>
           <Search locationSubmit={this.handleSubmit}/>
@@ -33,8 +44,8 @@ class Results extends Component{
         <Fragment>
           <Search locationSubmit={this.handleSubmit}/>
           <p>{this.state.location}</p>
-          <Map/>
-          <Content/>
+          <Map locationData={this.state}/>
+          <Content url={this.props.url} locationData={this.state}/>
         </Fragment>
       );
     }

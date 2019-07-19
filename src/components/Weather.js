@@ -1,5 +1,8 @@
 import React, { Component, Fragment }from 'react';
 
+import superagent from 'superagent';
+import '../App.css';
+
 
 class Weather extends Component{
     constructor(props){
@@ -18,28 +21,46 @@ class Weather extends Component{
       }
       
     }
-  
+  componentDidMount(){
+    console.log(this.props.locationData)
+    superagent.get(`${this.props.url}/weather`)
+    .query({data: this.props.locationData})
+    .then(results =>{
+      console.log(results.body);
+      this.setState({data: results.body})
+    })
+  }
+  componentDidUpdate(prevProps){
+    console.log(this.props.locationData)
+    console.log('weather is changing')
+    if(this.props.locationData !== prevProps.locationData){
+      superagent.get(`${this.props.url}/weather`)
+      .query({data: this.props.locationData})
+    .then(results =>{
+      console.log(results.body);
+      this.setState({data: results.body})
+    })
+    }
+  }
     
   
     render(){
       return (
         <Fragment>
             
-          <div>Weather
-          <p>Last updated 35 minutes ago</p>
+          <section>
+        <h3>Results from the Dark Sky API</h3>
+        <ul class="weather-results">
             {this.state.data.map((el,i)=>{
               return (
                 
-                  <div className="forecast-box" key={i}>
-                    <h3>Forcast </h3>
-                    <p>{el.time}</p>
-                    <p>{el.forecast}</p>
-                  </div>
+                    <li key={i}>The forecast for {el.time} is: {el.forecast}</li>
+                  
               )
             })}
-          
+            </ul>
+          </section>
               
-          </div>
           
         </Fragment>
       );
