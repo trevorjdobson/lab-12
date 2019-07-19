@@ -1,6 +1,6 @@
 import React, { Component, Fragment }from 'react';
 import superagent from 'superagent';
-
+import '../App.css';
 import Search from './Search.js'
 import Content from './Content.js';
 import Map from './Map.js'
@@ -19,6 +19,7 @@ class Results extends Component{
     }
     
   }
+  
 
   
   handleSubmit = (location) =>{

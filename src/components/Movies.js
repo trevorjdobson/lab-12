@@ -1,5 +1,6 @@
 import React, { Component, Fragment }from 'react';
 import superagent from 'superagent';
+import '../App.css';
 
 class Movies extends Component{
     constructor(props){
@@ -36,16 +37,21 @@ class Movies extends Component{
     render(){
       return (
         <Fragment>
+          <section className="movie-container">
+        <h3>Results from The Movie DB API</h3>
+        <ul className="movies-results">
+      
            {this.state.data.map(el=>{
              return (
-              <div key={Math.random()}>
+              <li key={Math.random()}>
               <p><span>{el.title}</span> was relased on {el.released_on}. Out of {el.total_votes} total votes, {el.title} has an average vote of {el.average_votes} and a popularity score of {el.popularity}.</p>
               <img src={el.image_url}/>
               <p>{el.overview}</p>
-              </div>
+              </li>
              )
            })} 
-          
+            </ul>
+          </section>
         </Fragment>
       );
     }

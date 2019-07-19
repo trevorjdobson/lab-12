@@ -1,5 +1,6 @@
 import React, { Component, Fragment }from 'react';
 import superagent from 'superagent';
+import '../App.css';
 
 class Events extends Component{
     constructor(props){
@@ -35,17 +36,21 @@ class Events extends Component{
     render(){
       return (
         <Fragment>
-            
+            <section>
+        <h3>Results from the Eventbrite API</h3>
+        <ul className="events-results">
+      
             {this.state.data.map(el=>{
              return (
-              <div key={Math.random()}>
+              <li key={Math.random()}>
               <a href={el.url}>{el.name}</a>
       <p>The average rating is {el.rating} out of 5 and the average cost is {el.price} out of 4</p>
       <img src={el.image_url}></img>
-              </div>
+              </li>
              )
            })} 
-          
+            </ul>
+          </section>
         </Fragment>
       );
     }

@@ -1,5 +1,6 @@
 import React, { Component, Fragment }from 'react';
 import superagent from 'superagent';
+import '../App.css';
 
 class Hiking extends Component{
     constructor(props){
@@ -35,6 +36,10 @@ class Hiking extends Component{
     render(){
       return (
         <Fragment>
+          <section>
+        <h3>Results from the Hiking Project API</h3>
+        <ul className="trails-results">
+      
             {this.state.data.map(el=>{
               return (
                 <div key={Math.random()}>
@@ -45,8 +50,8 @@ class Hiking extends Component{
       </div>
               )
             })}
-            
-          
+            </ul>
+            </section>
         </Fragment>
       );
     }

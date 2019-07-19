@@ -1,5 +1,6 @@
 import React, { Component, Fragment }from 'react';
 import superagent from 'superagent';
+import '../App.css';
 
 class Yelp extends Component{
     constructor(props){
@@ -35,17 +36,22 @@ class Yelp extends Component{
     render(){
       return (
         <Fragment>
-            
+            <section className="yelp-container">
+        <h3>Results from the Yelp API</h3>
+        <ul className="yelp-results">
+        
+      
             {this.state.data.map(el=>{
              return (
-              <div key={Math.random()}>
+              <li key={Math.random()}>
               <a href={el.url}>{el.name}</a>
       <p>The average rating is {el.rating} out of 5 and the average cost is {el.price} out of 4</p>
       <img src={el.image_url}></img>
-              </div>
+              </li>
              )
            })} 
-          
+          </ul>
+          </section>
         </Fragment>
       );
     }

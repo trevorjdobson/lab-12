@@ -1,6 +1,7 @@
 import React, { Component, Fragment }from 'react';
 
 import superagent from 'superagent';
+import '../App.css';
 
 
 class Weather extends Component{
@@ -47,21 +48,19 @@ class Weather extends Component{
       return (
         <Fragment>
             
-          <div>Weather
-          <p>Last updated 35 minutes ago</p>
+          <section>
+        <h3>Results from the Dark Sky API</h3>
+        <ul class="weather-results">
             {this.state.data.map((el,i)=>{
               return (
                 
-                  <div className="forecast-box" key={i}>
-                    <h3>Forcast </h3>
-                    <p>{el.time}</p>
-                    <p>{el.forecast}</p>
-                  </div>
+                    <li key={i}>The forecast for {el.time} is: {el.forecast}</li>
+                  
               )
             })}
-          
+            </ul>
+          </section>
               
-          </div>
           
         </Fragment>
       );
